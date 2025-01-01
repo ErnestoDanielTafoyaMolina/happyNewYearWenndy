@@ -1,24 +1,25 @@
-body{
+body {
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(0,138,34);
-    background: radial-gradient(circle, rgba(0,138,34,1) 0%, rgba(45,75,18,1) 100%);
+    background: rgb(0, 138, 34);
+    background: radial-gradient(circle, rgba(0, 138, 34, 1) 0%, rgba(45, 75, 18, 1) 100%);
     color: #fff;
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
-.container{
+
+.container {
     text-align: center;
     position: relative;
     animation: fadeIn 3s ease-in-out;
 }
 
-.message{
-    font-size:3rem;
+.message {
+    font-size: 3rem;
     font-weight: bold;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -26,85 +27,99 @@ body{
     opacity: 0;
 }
 
-.text{
+.text {
     font-size: 1.5rem;
 }
 
-.message.title{
+.message.title {
     animation-delay: 1s;
     color: cadetblue;
 }
 
-.year{
+.year {
     font-size: 5rem;
     font-weight: bold;
     color: #f39c12;
     animation: bounce 1s ease-out forwards infinite;
 }
 
-.conffeti{
+.conffeti {
     position: absolute;
-    top:0;
-    left:50%;
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
+    overflow: hidden;
 }
 
-.conffeti div{
+.conffeti div {
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: #f39c12;
-    border-radius: 100%; 
-    animation: fall 2s infinite;
+    background-color: red;
+    border-radius: 50%;
+    animation: fall 3s linear infinite, rotate 3s linear infinite;
+    opacity: 0.8;
 }
 
 @keyframes fadeIn {
-    0%{
+    0% {
         opacity: 0;
     }
-    100%{
+    100% {
         opacity: 1;
     }
 }
 
 @keyframes sideIn {
-    0%{
+    0% {
         transform: translateX(-50%);
     }
-    100%{
+    100% {
         transform: translateX(0);
         opacity: 1;
     }
 }
 
 @keyframes bounce {
-    0%, 100%{
+    0%, 100% {
         transform: translateY(0);
     }
-    50%{
+    50% {
         transform: translateY(-20px);
     }
 }
 
 @keyframes fall {
-    0% {
+    0%, 100% {
         transform: translateY(-100px);
+        opacity: 1;
     }
-
-    100% {
+    50% {
         transform: translateY(100vh);
+        opacity: 0.5;
     }
 }
 
-.conffeti div:nth-child(odd){
-    background-color: red;
-    animation-delay: 0.5s;
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-.conffeti div:nth-child(even){
+/* Variaciones de confeti */
+.conffeti div:nth-child(odd) {
     background-color: cyan;
-    animation-delay: 1s;
+    animation-duration: 4s;
+    animation-delay: calc(-2s * var(--random));
+}
+
+.conffeti div:nth-child(even) {
+    background-color: yellow;
+    animation-duration: 3s;
+    animation-delay: calc(-1s * var(--random));
 }
